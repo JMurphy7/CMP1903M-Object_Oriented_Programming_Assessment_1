@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace Object_Oriented_Programming_Assessment_1
 {
     class Program
@@ -12,7 +12,14 @@ namespace Object_Oriented_Programming_Assessment_1
         {
             Country estonia = new Country("bob", 2);
             Console.WriteLine($"{estonia.name} {estonia.popPercentile}");
+            Console.WriteLine(readFile());
             Console.ReadLine();
+        }
+        static string[] readFile()
+        {
+            string[] lines = File.ReadAllLines("Countries.txt");
+
+            return lines;
         }
     }
     class Country{
@@ -23,16 +30,12 @@ namespace Object_Oriented_Programming_Assessment_1
             name = name_;
             popPercentile = popPercentile_;
         }
-     
+    
+    
         //public void voting(string vote_){
           //  vote = vote_;
 
        // }
     }
-        public string[] readFile()
-        {
-            string[] lines = File.ReadAllLines("Countries.txt");
-            
-            return lines;
-        }           
 }
+
