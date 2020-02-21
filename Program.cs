@@ -23,11 +23,16 @@ namespace Object_Oriented_Programming_Assessment_1
             name = name_;
             popPercentile = popPercentile_;
         }
+     
         //public void voting(string vote_){
           //  vote = vote_;
 
        // }
     }
+        public string[] readFile()
+        {
+            string[] lines = File.ReadAllLines("Countries.txt");
+            
+            return lines;
+        }           
 }
-//Hey max this is the right file
-
