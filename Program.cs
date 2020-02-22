@@ -12,30 +12,43 @@ namespace Object_Oriented_Programming_Assessment_1
         {
             Country estonia = new Country("bob", 2);
             Console.WriteLine($"{estonia.name} {estonia.popPercentile}");
-            Console.WriteLine(readFile());
-            Console.ReadLine();
+            string[] lines = readFile();    // Take an array of strings as 'lines'
+            int count = 0;
+            foreach(string s in lines)
+            {
+                Console.WriteLine(lines[count]);
+                count++;
+            }
+            Console.ReadKey();
         }
-        static string[] readFile()
+        static string[] readFile()  // Read the file Countries.txt and convert into an array of strings
         {
-            string[] lines = File.ReadAllLines("Countries.txt");
+            try { 
+                 string[] lines = File.ReadAllLines("Countries.txt");
+                 return lines;
+            }
+            catch (FileNotFoundException)
+            {
+                string[] temp = { "Countries.txt not found. Has it been moved/deleted?" }; 
+                return temp;
+            }
 
-            return lines;
         }
+
     }
     class Country{
-        public string name {get; set;}
-        public float popPercentile {get;set;}
-        public Tuple<string, string, string> vote {get; set;} = new Tuple <string, string, string>("yes", "no", "abstain");
+        public string name { get; set;}
+        public float popPercentile { get; set; }
+        public string vote { get; set; }
         public Country(string name_, float popPercentile_){
             name = name_;
             popPercentile = popPercentile_;
         }
     
     
-        //public void voting(string vote_){
-          //  vote = vote_;
-
-       // }
+        public void voting(string vote_){ // We pass it the vote through the interface. There is no error checking here, as the interface will only accept <country> <yes, no, abstain>
+          vote = vote_;
+        }
     }
 }
 
