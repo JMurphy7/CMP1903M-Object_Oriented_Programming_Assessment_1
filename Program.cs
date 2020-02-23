@@ -48,6 +48,34 @@ namespace Object_Oriented_Programming_Assessment_1
                 string[] temp = { "Countries.txt not found. Has it been moved/deleted?" }; 
                 return temp;
             }
+            
+            static void userInterface(string command)
+        {
+            string[] a = command.Split(' ');
+
+            switch (a[1])
+            {
+
+                case ("vote"):
+                    Console.WriteLine("this function is incomplete");
+                    //
+                    break;
+                case ("qualifiedMajority"):
+                    Console.WriteLine("this function is incomplete.");
+                    //qualifiedmajority();
+                    break;
+                case ("allCountriesParticipating"):
+                    Console.WriteLine("this function is incomplete");
+                    //allcountriesparticipating();
+                    break;
+                default:
+                    Console.WriteLine("this function is incomplete.");
+                    break;
+
+            }
+        }
+
+            
         }
 
 
