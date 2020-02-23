@@ -49,31 +49,61 @@ namespace Object_Oriented_Programming_Assessment_1
                 return temp;
             }
             
-            static void userInterface(string command)
-        {
-            string[] a = command.Split(' ');
+        
+            /* Joe + maybe david if he looks before tuesday - still dont fully understand switch statements yet and i dont fully 
+            think what ive added will 100% work as i cant test it but i have codded atleast the basics of how this
+            process would work (i think kek)*/
+      
 
-            switch (a[1])
+        static void userInterface(string command)
             {
+                int vote_yes = 0;
+                
+                int vote_no = 0;
+                
+                int vote_abstain = 0;
 
-                case ("vote"):
-                    Console.WriteLine("this function is incomplete");
-                    //
-                    break;
-                case ("qualifiedMajority"):
-                    Console.WriteLine("this function is incomplete.");
-                    //qualifiedmajority();
-                    break;
-                case ("allCountriesParticipating"):
-                    Console.WriteLine("this function is incomplete");
-                    //allcountriesparticipating();
-                    break;
-                default:
-                    Console.WriteLine("this function is incomplete.");
-                    break;
+                string[] a = command.Split(' ');
 
+                switch (a[1])
+                {
+                    case ("vote"):
+                        Console.WriteLine("Please enter your vote.");
+                        Countries_Vote= Console.ReadLine();
+
+                        if (Countries_Vote = "yes")
+                        {
+                            vote_yes += 1;
+
+                        }
+                        else if (Countries_Vote = "no")
+                        {
+                            vote_no += 1;
+                        }
+                        else if (Countries_vote = "Abstain")
+                        {
+                            vote_abstain += 1 ;    
+                        }
+                        else
+                        {
+                            Console.WriteLine("You have entered an incorrect vote");
+                        }
+                        //
+                        break;
+                    case ("qualifiedMajority"):
+                        Console.WriteLine("this function is incomplete.");
+                        //qualifiedmajority();
+                        break;
+                    case ("allCountriesParticipating"):
+                        Console.WriteLine("this function is incomplete");
+                        //allcountriesparticipating();
+                        break;
+                    default:
+                        Console.WriteLine("this function is incomplete.");
+                        break;
+
+                }
             }
-        }
 
             
         }
