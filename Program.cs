@@ -53,40 +53,38 @@ namespace Object_Oriented_Programming_Assessment_1
             /* Joe + maybe david if he looks before tuesday - still dont fully understand switch statements yet and i dont fully 
             think what ive added will 100% work as i cant test it but i have codded atleast the basics of how this
             process would work (i think kek)*/
+
+            /* imo i think it looks ok as a starting foundation, we'll go over it more on tuesday, also i've tidied things up a bit */
       
 
         static void userInterface(string command)
             {
                 int vote_yes = 0;
-                
                 int vote_no = 0;
-                
                 int vote_abstain = 0;
 
                 string[] a = command.Split(' ');
-
                 switch (a[1])
                 {
                     case ("vote"):
                         Console.WriteLine("Please enter your vote.");
-                        Countries_Vote= Console.ReadLine();
+                        Countries_Vote = Console.ReadLine();
 
                         if (Countries_Vote = "yes")
                         {
                             vote_yes += 1;
-
                         }
                         else if (Countries_Vote = "no")
                         {
                             vote_no += 1;
                         }
-                        else if (Countries_vote = "Abstain")
+                        else if (Countries_Vote = "abstain")
                         {
                             vote_abstain += 1 ;    
                         }
                         else
                         {
-                            Console.WriteLine("You have entered an incorrect vote");
+                            Console.WriteLine("You have entered an incorrect vote. Exiting...");
                         }
                         //
                         break;
@@ -105,7 +103,6 @@ namespace Object_Oriented_Programming_Assessment_1
                 }
             }
 
-            
         }
 
 
