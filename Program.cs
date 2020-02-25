@@ -20,20 +20,19 @@ namespace Object_Oriented_Programming_Assessment_1
                 userInterface(Console.ReadLine());
             }
             
-            Console.ReadKey();       
         }
         static string[] readFile()  // Read the file Countries.txt and convert into an array of strings
         {
-            try { 
-                 string[] countries = File.ReadAllLines("Countries.txt");
-                 string[] population = File.ReadAllLines("popPercentage.txt");
+            try { // Proofing for if the file is not there
+                 string[] countries = File.ReadAllLines("Countries.txt"); // Files are used as this data is dynamic. Brexit for example, has meant that this list needed to be changed.
+                 string[] population = File.ReadAllLines("popPercentage.txt"); // Pop percentage is used for storing the percentage, we dont ever end up using this, but it does add expandibility in the future.
 
                  int count = 0;
                  
                 foreach (string s in countries)
                 {
                     Country a = new Country(countries[count], float.Parse(population[count]));
-                    countryList.Add(a);
+                    countryList.Add(a); // Adds each country in the .txt file to the list
                     count++;
                 }
                  return null;
@@ -48,20 +47,19 @@ namespace Object_Oriented_Programming_Assessment_1
         static void userInterface(string command)
             {
 
-                string[] a = command.Split(' ');
+                string[] a = command.Split(' '); // Breaks the command into segments to be processed.
                 switch (a[0])
                 {
-                    case ("vote"):
-                    
+                    case ("vote"): // Granted, a very fiddly interface, but it allows each and every country to be edited at any time. 
                     if(a.Count() != 3)
                     {
-                        Console.WriteLine("Too few, or too many arguments.\nStructure as so: vote <country> <yes:no:abstain>");
+                        Console.WriteLine("Too few, or too many arguments.\nStructure as so: vote <country> <yes:no:abstain>"); // Proofing against arguments being invalid
                         break;
                     }
                     int counter = 0;
                         foreach(Country countries in countryList) {
 
-                        if (countryList[counter].name == a[1])
+                        if (countryList[counter].name == a[1]) // Provides no output if the country isnt found, but stops the user from entering a country that doesnt exist.
                         {
                             if (a[2] != "yes" && a[2] != "abstain" && a[2] != "no")
                             {
@@ -69,22 +67,33 @@ namespace Object_Oriented_Programming_Assessment_1
                                 break;
                             }
 
-                            Console.WriteLine($"{countryList[counter].name} is now voting {countryList[counter].vote}");
                             countryList[counter].vote = a[2];
+                            Console.WriteLine($"{countryList[counter].name} is now voting {countryList[counter].vote}"); // Visual feedback
                         }
                         counter++;
                     }
                     break;
                     case ("qualifiedMajority"):
-                        Console.WriteLine(qualifiedMajority());
-                        
+                        Console.WriteLine(qualifiedMajority()); // Console.WriteLine is used to give a text output.
+                        break;
+                    case ("listCountries"): // Simply calls the listCountries() function.
+                        listCountries();
                         break;
                     default:
-                        Console.WriteLine("Invalid. Acceptable commands are:\nvote <country> <yes:no:abstain>\nqualifiedMajority");
+                        Console.WriteLine("Invalid. Acceptable commands are:\nvote <country> <yes:no:abstain>\nqualifiedMajority\nlistCountries"); // Shows the user all usable commands.
                         break;
 
                 }
             }
+        static void listCountries()
+        {
+            int count = 0;
+            foreach(Country country in countryList)
+            {
+                Console.WriteLine($"{countryList[count].name} has a population of {countryList[count].popPercentile}% and vote {countryList[count].vote}"); // Simply shows each value in the countryList and breaks it down to its component parts.
+                count++;
+            }
+        }
         static string qualifiedMajority(){
             int count = 0;
 
@@ -98,7 +107,7 @@ namespace Object_Oriented_Programming_Assessment_1
                 }
                 count++;
             }
-            int a = countryList.Count / 2;
+            int a = countryList.Count / 2; // If more than half the countries say yes, then its passes. Else, it has failed.
             if(a > vote_yes){
                 return "The vote has failed.";
                 }else{
@@ -111,12 +120,10 @@ namespace Object_Oriented_Programming_Assessment_1
         public string name { get; set;}
         public float popPercentile { get; set; }
         public string vote { get; set; }
-        public Country(string name_, float popPercentile_){
+        public Country(string name_, float popPercentile_){ // Automatically assumes Abstain. Its safer than assuming a vote of "yes" or "no"
             name = name_;
             popPercentile = popPercentile_;
-        }
-        public void voting(string vote_){ // We pass it the vote through the interface. There is no error checking here, as the interface will only accept <country> <yes, no, abstain>
-          vote = vote_;
+            vote = "abstain";
         }
     }
 }
