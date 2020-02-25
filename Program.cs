@@ -15,8 +15,10 @@ namespace Object_Oriented_Programming_Assessment_1
         static void Main(string[] args)
         {
             string[] lines = readFile();    // Take an array of strings as 'lines'
-            userInterface(Console.ReadLine());
-            
+            while (true)
+            {
+                userInterface(Console.ReadLine());
+            }
             
             Console.ReadKey();       
         }
@@ -50,21 +52,35 @@ namespace Object_Oriented_Programming_Assessment_1
                 switch (a[0])
                 {
                     case ("vote"):
+                    
+                    if(a.Count() != 3)
+                    {
+                        Console.WriteLine("Too few, or too many arguments.\nStructure as so: vote <country> <yes:no:abstain>");
+                        break;
+                    }
+                    int counter = 0;
+                        foreach(Country countries in countryList) {
 
-                                  if(countryList.Contains(a[1]){
+                        if (countryList[counter].name == a[1])
+                        {
+                            if (a[2] != "yes" && a[2] != "abstain" && a[2] != "no")
+                            {
+                                Console.WriteLine("Invalid vote!");
+                                break;
+                            }
+
+                            Console.WriteLine($"{countryList[counter].name} is now voting {countryList[counter].vote}");
+                            countryList[counter].vote = a[2];
                         }
+                        counter++;
+                    }
+                    break;
+                    case ("qualifiedMajority"):
+                        Console.WriteLine(qualifiedMajority());
                         
                         break;
-                    case ("qualifiedMajority"):
-                        Console.WriteLine("this function is incomplete.");
-                        //qualifiedmajority();
-                        break;
-                    case ("allCountriesParticipating"):
-                        Console.WriteLine("this function is incomplete");
-                        //allcountriesparticipating();
-                        break;
                     default:
-                        Console.WriteLine("this function is incomplete.");
+                        Console.WriteLine("Invalid. Acceptable commands are:\nvote <country> <yes:no:abstain>\nqualifiedMajority");
                         break;
 
                 }
