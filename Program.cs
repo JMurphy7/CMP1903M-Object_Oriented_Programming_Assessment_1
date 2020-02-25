@@ -9,21 +9,16 @@ namespace Object_Oriented_Programming_Assessment_1
     class Program
     {
         static List<Country> countryList = new List<Country>();
+        static int vote_yes = 0;
+        static int vote_no = 0;
+        static int vote_abstain = 0;
         static void Main(string[] args)
         {
-            // Country estonia = new Country("bob", 2);
-            // Console.WriteLine($"{estonia.name} {estonia.popPercentile}");
             string[] lines = readFile();    // Take an array of strings as 'lines'
-            int count = 0;
-
-            /*foreach(string s in lines)
-            {
-                Console.WriteLine(lines[count]);
-                count++;
-            }
-            Console.ReadKey();            
-            */
+            userInterface(Console.ReadLine());
             
+            
+            Console.ReadKey();       
         }
         static string[] readFile()  // Read the file Countries.txt and convert into an array of strings
         {
@@ -37,10 +32,8 @@ namespace Object_Oriented_Programming_Assessment_1
                 {
                     Country a = new Country(countries[count], float.Parse(population[count]));
                     countryList.Add(a);
-                    Console.WriteLine(countryList[count].name);
                     count++;
                 }
-                Console.ReadKey();
                  return null;
             }
             catch (FileNotFoundException)
@@ -48,45 +41,19 @@ namespace Object_Oriented_Programming_Assessment_1
                 string[] temp = { "Countries.txt not found. Has it been moved/deleted?" }; 
                 return temp;
             }
-            
-        
-            /* Joe + maybe david if he looks before tuesday - still dont fully understand switch statements yet and i dont fully 
-            think what ive added will 100% work as i cant test it but i have codded atleast the basics of how this
-            process would work (i think kek)*/
-
-            /* imo i think it looks ok as a starting foundation, we'll go over it more on tuesday, also i've tidied things up a bit */
       
-
+        }
         static void userInterface(string command)
             {
-                int vote_yes = 0;
-                int vote_no = 0;
-                int vote_abstain = 0;
 
                 string[] a = command.Split(' ');
-                switch (a[1])
+                switch (a[0])
                 {
                     case ("vote"):
-                        Console.WriteLine("Please enter your vote.");
-                        Countries_Vote = Console.ReadLine();
 
-                        if (Countries_Vote = "yes")
-                        {
-                            vote_yes += 1;
+                                  if(countryList.Contains(a[1]){
                         }
-                        else if (Countries_Vote = "no")
-                        {
-                            vote_no += 1;
-                        }
-                        else if (Countries_Vote = "abstain")
-                        {
-                            vote_abstain += 1 ;    
-                        }
-                        else
-                        {
-                            Console.WriteLine("You have entered an incorrect vote. Exiting...");
-                        }
-                        //
+                        
                         break;
                     case ("qualifiedMajority"):
                         Console.WriteLine("this function is incomplete.");
@@ -102,9 +69,26 @@ namespace Object_Oriented_Programming_Assessment_1
 
                 }
             }
+        static string qualifiedMajority(){
+            int count = 0;
 
+            foreach(Country countries in countryList){
+                if(countryList[count].vote == "yes"){
+                vote_yes++;
+                }else if(countryList[count].vote == "no"){
+                vote_no++;
+                }else{
+                vote_abstain++;
+                }
+                count++;
+            }
+            int a = countryList.Count / 2;
+            if(a > vote_yes){
+                return "The vote has failed.";
+                }else{
+                return "The vote has passed";
+                }
         }
-
 
     }
     class Country{
