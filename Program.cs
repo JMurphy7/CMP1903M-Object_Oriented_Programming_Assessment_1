@@ -8,10 +8,10 @@ namespace Object_Oriented_Programming_Assessment_1
 {
     class Program
     {
-        static List<Country> countryList = new List<Country>();
-        static int vote_yes = 0;
-        static int vote_no = 0;
-        static int vote_abstain = 0;
+        private static List<Country> countryList = new List<Country>();
+        private static int vote_yes = 0;
+        private static int vote_no = 0;
+        private static int vote_abstain = 0;
         static void Main(string[] args)
         {
             string[] lines = readFile();    // Take an array of strings as 'lines'
@@ -130,10 +130,10 @@ namespace Object_Oriented_Programming_Assessment_1
             }
             int a = countryList.Count / 2; // If more than half the countries say yes, then its passes. Else, it has failed.
             if(a > vote_yes){
-                return $"The vote has failed. The number of countries voting yes is {vote_yes}, and the number of countries voting no is {vote_no}.";
+                return $"The vote has failed.\n Number of countries voting yes: {vote_yes}\n Number of countries voting no: {vote_no}\n Number of countries abstaining: {vote_abstain}";
                 }else{
-                return $"The vote has passed. The number of countries voting yes is {vote_yes}, and the number of countries voting no is {vote_no}.";
-                }
+                return $"The vote has failed.\n Number of countries voting yes: {vote_yes}\n Number of countries voting no: {vote_no}\n Number of countries abstaining: {vote_abstain}";
+            }
         }
 
     }
