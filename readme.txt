@@ -1,0 +1,2 @@
+To use this program, you will need to put the files 'Countries.txt' and 'popPercentage.txt' in the same folder as the executable.
+The github file is accessable at: https://github.com/JMurphy7/CMP1903M-Object_Oriented_Programming_Assessment_1
